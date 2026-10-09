@@ -1,0 +1,1342 @@
+```html
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Cadastro - Mamografia Outubro Rosa</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --primary: #d81b60;
+      --primary-dark: #ad1457;
+      --primary-light: #fce4ec;
+      --accent: #ff4081;
+      --text-main: #1f2937;
+      --text-muted: #6b7280;
+      --bg: #fff5f8;
+      --card-bg: #ffffff;
+      --border: #fbcfe8;
+      --radius: 20px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: var(--bg);
+      color: var(--text-main);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+    }
+
+    .app-card {
+      width: 100%;
+      max-width: 480px;
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      box-shadow: 0 10px 30px rgba(216, 27, 96, 0.08);
+      border: 1px solid var(--border);
+      padding: 24px 20px;
+      margin: auto;
+    }
+
+    /* Faixa Superior Institucional */
+    .top-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      background-color: #fdf2f8;
+      border: 1px solid #fbcfe8;
+      color: #be185d;
+      font-size: 0.78rem;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      padding: 9px 12px;
+      border-radius: 9999px;
+      margin-bottom: 22px;
+      text-align: center;
+      line-height: 1.3;
+    }
+
+    /* Título com Destaque em MAMOGRAFIA */
+    .main-title {
+      text-align: center;
+      margin: 0 auto 26px auto;
+      line-height: 1.15;
+      text-transform: uppercase;
+    }
+
+    .title-intro {
+      display: block;
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: #9d174d;
+      letter-spacing: 0.02em;
+      margin-bottom: 4px;
+    }
+
+    .title-mamografia {
+      display: block;
+      font-size: 2.35rem;
+      font-weight: 900;
+      letter-spacing: -0.03em;
+      -webkit-text-stroke: 0.8px rgba(157, 23, 77, 0.25);
+      background: linear-gradient(90deg, #9d174d, #e11d48, #ff2a85, #ec4899, #be185d, #e11d48);
+      background-size: 250% 250%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: gradientFlow 3.5s ease-in-out infinite;
+      filter: drop-shadow(0 2px 10px rgba(225, 29, 72, 0.25));
+    }
+
+    @keyframes gradientFlow {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .step-title {
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: #9d174d;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .form-group {
+      margin-bottom: 18px;
+      text-align: left;
+    }
+
+    label {
+      display: block;
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: #374151;
+      margin-bottom: 8px;
+    }
+
+    .input-control {
+      width: 100%;
+      min-height: 58px;
+      padding: 14px 18px;
+      font-size: 1.12rem;
+      font-family: inherit;
+      border: 2px solid #fce7f3;
+      border-radius: 14px;
+      background-color: #fff9fc;
+      color: var(--text-main);
+      outline: none;
+      transition: all 0.2s ease;
+      appearance: none;
+    }
+
+    .input-control:focus {
+      border-color: var(--primary);
+      background-color: #ffffff;
+      box-shadow: 0 0 0 4px rgba(216, 27, 96, 0.12);
+    }
+
+    .select-wrapper {
+      position: relative;
+    }
+
+    .select-acs-styled {
+      cursor: pointer;
+      font-weight: 600;
+      color: #374151;
+      background-color: #fff9fc;
+      border: 2px solid #fbcfe8;
+      padding-right: 44px;
+    }
+
+    .select-acs-styled:focus {
+      background-color: #ffffff;
+      border-color: var(--primary);
+    }
+
+    .select-wrapper::after {
+      content: "";
+      position: absolute;
+      right: 18px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 0;
+      height: 0;
+      border-left: 6px solid transparent;
+      border-right: 6px solid transparent;
+      border-top: 7px solid #be185d;
+      pointer-events: none;
+    }
+
+    .form-row {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 18px;
+    }
+
+    .form-row .form-group {
+      margin-bottom: 0;
+    }
+
+    .form-col-date {
+      flex: 1.6;
+    }
+
+    .form-col-ma {
+      flex: 1;
+    }
+
+    .checkbox-box {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background-color: #fdf2f8;
+      border: 1px solid #fce7f3;
+      padding: 14px;
+      border-radius: 14px;
+      margin-top: 8px;
+      cursor: pointer;
+    }
+
+    .checkbox-box input[type="checkbox"] {
+      width: 22px;
+      height: 22px;
+      accent-color: var(--primary);
+      flex-shrink: 0;
+      cursor: pointer;
+    }
+
+    .checkbox-label {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: #9d174d;
+      cursor: pointer;
+    }
+
+    .dropzone {
+      border: 2px dashed #f472b6;
+      background-color: #fffafc;
+      border-radius: 14px;
+      padding: 18px;
+      text-align: center;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .dropzone:active {
+      background-color: #fce4ec;
+    }
+
+    .icon-small {
+      width: 32px;
+      height: 32px;
+      fill: var(--primary);
+    }
+
+    .preview-box {
+      margin-top: 10px;
+      display: none;
+      position: relative;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 2px solid #fbcfe8;
+      max-height: 180px;
+    }
+
+    .preview-box img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .remove-btn {
+      position: absolute;
+      top: 6px;
+      right: 6px;
+      background: rgba(0, 0, 0, 0.75);
+      color: #ffffff;
+      border: none;
+      border-radius: 6px;
+      padding: 6px 12px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .btn-row {
+      display: flex;
+      gap: 10px;
+      margin-top: 24px;
+    }
+
+    .btn {
+      min-height: 58px;
+      border: none;
+      border-radius: 14px;
+      font-size: 1.15rem;
+      font-weight: 800;
+      font-family: inherit;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      transition: transform 0.1s, opacity 0.2s, background-color 0.2s;
+    }
+
+    .btn:active {
+      transform: scale(0.98);
+    }
+
+    .btn-primary {
+      flex: 1;
+      background-color: var(--primary);
+      color: #ffffff;
+      box-shadow: 0 6px 16px rgba(216, 27, 96, 0.3);
+    }
+
+    .btn-secondary {
+      flex: 0 0 90px;
+      background-color: #f3f4f6;
+      color: #4b5563;
+    }
+
+    .btn:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
+    /* Tela de Confirmação & Comprovantes */
+    .success-card {
+      display: none;
+      text-align: center;
+      padding: 4px 0;
+    }
+
+    .success-badge {
+      width: 58px;
+      height: 58px;
+      background-color: #ecfdf5;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 14px;
+    }
+
+    .success-icon {
+      width: 32px;
+      height: 32px;
+      fill: #059669;
+    }
+
+    .success-text {
+      font-size: 1.08rem;
+      line-height: 1.45;
+      color: #065f46;
+      font-weight: 700;
+      background: #ecfdf5;
+      border: 1.5px solid #a7f3d0;
+      padding: 16px;
+      border-radius: 14px;
+      margin-bottom: 20px;
+    }
+
+    .voucher-card {
+      background: #ffffff;
+      border: 1.5px solid #fbcfe8;
+      border-radius: 16px;
+      padding: 16px 18px;
+      text-align: left;
+      margin-bottom: 22px;
+      box-shadow: 0 4px 15px rgba(216, 27, 96, 0.05);
+    }
+
+    .voucher-title {
+      font-size: 0.95rem;
+      font-weight: 800;
+      color: #be185d;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      margin-bottom: 12px;
+      padding-bottom: 8px;
+      border-bottom: 1px dashed #fbcfe8;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .voucher-row {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 9px;
+      font-size: 0.95rem;
+      line-height: 1.35;
+    }
+
+    .voucher-label {
+      color: #6b7280;
+      font-weight: 600;
+    }
+
+    .voucher-value {
+      font-weight: 800;
+      color: #111827;
+      text-align: right;
+      max-width: 60%;
+      word-break: break-word;
+    }
+
+    /* Os 3 Comprovantes */
+    .voucher-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 11px;
+      margin-bottom: 20px;
+    }
+
+    .btn-action-comprovante {
+      width: 100%;
+      min-height: 52px;
+      border-radius: 12px;
+      font-size: 1.02rem;
+      font-weight: 800;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      transition: transform 0.1s, opacity 0.2s;
+    }
+
+    .btn-action-comprovante:active {
+      transform: scale(0.98);
+    }
+
+    .btn-whatsapp {
+      background-color: #25d366;
+      color: #ffffff;
+      box-shadow: 0 4px 12px rgba(37, 211, 102, 0.35);
+    }
+
+    .btn-download-img {
+      background-color: #be185d;
+      color: #ffffff;
+      box-shadow: 0 4px 12px rgba(190, 24, 93, 0.3);
+    }
+
+    .btn-copy-msg {
+      background-color: #f3f4f6;
+      color: #374151;
+      border: 1.5px solid #e5e7eb;
+    }
+
+    .action-icon {
+      width: 22px;
+      height: 22px;
+      flex-shrink: 0;
+    }
+
+    .toast {
+      display: none;
+      background: #111827;
+      color: #ffffff;
+      font-size: 0.88rem;
+      font-weight: 700;
+      padding: 10px 14px;
+      border-radius: 10px;
+      margin-bottom: 14px;
+      animation: fadeIn 0.2s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .error-msg {
+      color: #dc2626;
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-top: 6px;
+      display: none;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    .spinner {
+      width: 24px;
+      height: 24px;
+      border: 3px solid rgba(255, 255, 255, 0.3);
+      border-top-color: #fff;
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+  </style>
+</head>
+<body>
+
+  <main class="app-card">
+    
+    <!-- Cabeçalho Institucional Fixo -->
+    <div class="top-badge">
+      <span>VERA CRUZ - USF JIRIBATUBA - OUTUBRO ROSA</span>
+    </div>
+
+    <form id="mamografiaForm" novalidate>
+      
+      <!-- ETAPA 1: Nome, Data de Nascimento e MA -->
+      <section id="step1">
+        <h1 class="main-title">
+          <span class="title-intro">PARA QUEM É A</span>
+          <span class="title-mamografia">MAMOGRAFIA?</span>
+        </h1>
+
+        <!-- Campo 1: Nome Completo -->
+        <div class="form-group">
+          <input 
+            type="text" 
+            id="nome" 
+            class="input-control" 
+            placeholder="Nome completo da Paciente" 
+            autocomplete="name" 
+            required 
+            autofocus
+          >
+          <div id="errorNome" class="error-msg">Informe o nome e sobrenome completo.</div>
+        </div>
+
+        <!-- Campos 2 e 3 na Mesma Linha: Data de Nascimento + MA -->
+        <div class="form-row">
+          <div class="form-group form-col-date">
+            <input 
+              type="tel" 
+              id="dataNascimento" 
+              class="input-control" 
+              placeholder="Nascimento (DD/MM/AAAA)" 
+              inputmode="numeric" 
+              maxlength="10" 
+              required
+            >
+            <div id="errorDataNascimento" class="error-msg">Data inválida (DD/MM/AAAA).</div>
+          </div>
+
+          <div class="form-group form-col-ma">
+            <input 
+              type="number" 
+              id="ma" 
+              class="input-control" 
+              placeholder="MA (nº)" 
+              inputmode="numeric" 
+              min="0" 
+              step="1" 
+              required
+            >
+            <div id="errorMa" class="error-msg">Informe a MA.</div>
+          </div>
+        </div>
+
+        <div class="btn-row">
+          <button type="button" class="btn btn-primary" id="btnNext">Avançar</button>
+        </div>
+      </section>
+
+      <!-- ETAPA 2: Mamografia e Preventivo -->
+      <section id="step2" class="hidden">
+        <h2 class="step-title">Dados dos Exames</h2>
+
+        <!-- 1. Ano da Mamografia + Checkbox -->
+        <div class="form-group">
+          <label for="anoMamografia">Ano da Última Mamografia</label>
+          <input 
+            type="number" 
+            id="anoMamografia" 
+            class="input-control" 
+            placeholder="Ex: 2023" 
+            inputmode="numeric" 
+            min="1970" 
+            max="2026"
+          >
+          <div id="errorAno" class="error-msg">Informe um ano válido (ex: 2022).</div>
+
+          <label class="checkbox-box">
+            <input type="checkbox" id="nuncaFez">
+            <span class="checkbox-label">Nunca realizou mamografia</span>
+          </label>
+        </div>
+
+        <!-- 2. Foto do Laudo da Mamografia -->
+        <div class="form-group" id="grupoFoto">
+          <label>Foto do Laudo Anterior (opcional)</label>
+          <div class="dropzone" id="dropzone">
+            <svg class="icon-small" viewBox="0 0 24 24">
+              <path d="M4 4h3l2-2h6l2 2h3a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2zm8 3a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm0 2a3 3 0 1 1 0 6 3 3 0 0 1 0-6z"/>
+            </svg>
+            <span style="font-size: 0.95rem; font-weight: 700; color: #be185d;" id="dropzoneText">Tirar foto ou anexar laudo</span>
+            <span style="font-size: 0.78rem; color: #6b7280;">Formatos: Imagem ou PDF</span>
+          </div>
+          <input type="file" id="fotoInput" accept="image/*,application/pdf" capture="environment" class="hidden">
+          
+          <div class="preview-box" id="previewContainer">
+            <img id="previewImage" src="" alt="Prévia">
+            <button type="button" class="remove-btn" id="btnRemovePic">Remover</button>
+          </div>
+        </div>
+
+        <!-- 3. Ano do Último Preventivo + Checkbox -->
+        <div class="form-group">
+          <label for="anoPreventivo">Ano do Último Preventivo</label>
+          <input 
+            type="number" 
+            id="anoPreventivo" 
+            class="input-control" 
+            placeholder="Ex: 2023" 
+            inputmode="numeric" 
+            min="1970" 
+            max="2026"
+          >
+          <div id="errorAnoPreventivo" class="error-msg">Informe um ano válido (ex: 2022).</div>
+
+          <label class="checkbox-box">
+            <input type="checkbox" id="nuncaFezPreventivo">
+            <span class="checkbox-label">Nunca realizou preventivo</span>
+          </label>
+        </div>
+
+        <div class="btn-row">
+          <button type="button" class="btn btn-secondary" id="btnBack">Voltar</button>
+          <button type="submit" class="btn btn-primary" id="btnSubmit">ENVIAR</button>
+        </div>
+      </section>
+
+    </form>
+
+    <!-- TELA FINAL: Confirmação + Resumo + 3 Formas de Comprovante -->
+    <section id="successScreen" class="success-card">
+      <div class="success-badge">
+        <svg class="success-icon" viewBox="0 0 24 24">
+          <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+        </svg>
+      </div>
+
+      <div class="success-text">
+        Documentos para realização da Mamografia - Outubro Rosa estarão disponíveis para retirada na Unidade de Saúde em três dias úteis
+      </div>
+
+      <!-- Cartão com Resumo do Cadastro da Paciente -->
+      <div class="voucher-card">
+        <div class="voucher-title">
+          <span>Resumo do Registro</span>
+          <span style="font-size: 0.78rem; color: #059669; background: #ecfdf5; padding: 2px 8px; border-radius: 6px;">✓ Confirmado</span>
+        </div>
+        <div class="voucher-row">
+          <span class="voucher-label">Paciente:</span>
+          <span class="voucher-value" id="resumoNome">---</span>
+        </div>
+        <div class="voucher-row">
+          <span class="voucher-label">Nascimento:</span>
+          <span class="voucher-value" id="resumoDataNascimento">---</span>
+        </div>
+        <div class="voucher-row">
+          <span class="voucher-label">MA:</span>
+          <span class="voucher-value" id="resumoMa">---</span>
+        </div>
+        <div class="voucher-row">
+          <span class="voucher-label">Última Mamografia:</span>
+          <span class="voucher-value" id="resumoAno">---</span>
+        </div>
+        <div class="voucher-row">
+          <span class="voucher-label">Último Preventivo:</span>
+          <span class="voucher-value" id="resumoPreventivo">---</span>
+        </div>
+        <div class="voucher-row" style="margin-bottom: 0;">
+          <span class="voucher-label">Data/Hora:</span>
+          <span class="voucher-value" id="resumoData" style="font-size: 0.88rem;">---</span>
+        </div>
+      </div>
+
+      <!-- Alerta Toast de Cópia -->
+      <div id="copyToast" class="toast">Texto copiado para a área de transferência!</div>
+
+      <!-- Os 3 Comprovantes Integrados -->
+      <div class="voucher-actions">
+        <!-- 1. WhatsApp -->
+        <button type="button" class="btn-action-comprovante btn-whatsapp" id="btnShareWhatsapp">
+          <svg class="action-icon" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91C2.13 13.66 2.59 15.36 3.45 16.86L2.05 22L7.3 20.62C8.75 21.41 10.38 21.83 12.04 21.83C17.5 21.83 21.95 17.38 21.95 11.92C21.95 9.27 20.92 6.78 19.05 4.91C17.18 3.03 14.69 2 12.04 2M12.05 3.67C14.25 3.67 16.31 4.53 17.87 6.09C19.42 7.65 20.28 9.72 20.28 11.92C20.28 16.46 16.58 20.15 12.04 20.15C10.56 20.15 9.11 19.76 7.85 19L7.55 18.83L4.43 19.65L5.26 16.61L5.06 16.29C4.24 15 3.8 13.47 3.8 11.91C3.81 7.37 7.5 3.67 12.05 3.67M9.53 7.34C9.36 7.34 9.09 7.4 8.87 7.65C8.65 7.89 8.02 8.48 8.02 9.68C8.02 10.88 8.89 12.04 9.01 12.2C9.13 12.37 10.7 14.89 13.19 15.86C15.27 16.67 15.69 16.51 16.14 16.46C16.59 16.42 17.58 15.87 17.79 15.3C18 14.72 18 14.23 17.93 14.12C17.87 14.01 17.7 13.95 17.45 13.82C17.2 13.7 15.97 13.09 15.74 13C15.52 12.92 15.35 12.88 15.19 13.13C15.02 13.37 14.55 13.95 14.4 14.12C14.26 14.28 14.11 14.3 13.86 14.18C13.61 14.05 12.81 13.79 11.86 12.94C11.12 12.28 10.62 11.46 10.48 11.21C10.33 10.96 10.46 10.83 10.59 10.71C10.7 10.6 10.84 10.41 10.97 10.27C11.09 11.12 11.13 10.02 11.22 9.85C11.3 9.69 11.26 9.54 11.2 9.42C11.14 9.3 10.64 8.08 10.44 7.58C10.24 7.1 10.04 7.16 9.88 7.15C9.73 7.15 9.55 7.15 9.38 7.15L9.53 7.34Z"/>
+          </svg>
+          Enviar no WhatsApp
+        </button>
+
+        <!-- 2. Baixar Imagem PNG -->
+        <button type="button" class="btn-action-comprovante btn-download-img" id="btnDownloadCard">
+          <svg class="action-icon" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM17 13l-5 5-5-5h3V9h4v4h3z"/>
+          </svg>
+          Baixar Cartão (Imagem PNG)
+        </button>
+
+        <!-- 3. Copiar Mensagem -->
+        <button type="button" class="btn-action-comprovante btn-copy-msg" id="btnCopyText">
+          <svg class="action-icon" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/>
+          </svg>
+          Copiar Texto do Comprovante
+        </button>
+      </div>
+
+      <!-- Botão para Próximo Atendimento -->
+      <button type="button" class="btn btn-secondary" id="btnReset" style="width: 100%; min-height: 52px; font-size: 1rem;">
+        Novo Cadastro
+      </button>
+
+      <!-- Canvas Oculto para Renderizar o Comprovante em Imagem HD -->
+      <canvas id="hiddenVoucherCanvas" style="display: none;"></canvas>
+    </section>
+
+  </main>
+
+  <script>
+    // ===================================================================
+    // COLE AQUI A URL DO SEU WEB APP DO GOOGLE APPS SCRIPT (termina em /exec)
+    // ===================================================================
+    const APPS_SCRIPT_URL = 'SUA_URL_DO_APPS_SCRIPT_AQUI';
+
+    // Elementos da Interface
+    const form = document.getElementById('mamografiaForm');
+    const step1 = document.getElementById('step1');
+    const step2 = document.getElementById('step2');
+    const successScreen = document.getElementById('successScreen');
+
+    const inputNome = document.getElementById('nome');
+    const inputDataNascimento = document.getElementById('dataNascimento');
+    const inputMa = document.getElementById('ma');
+    const errorNome = document.getElementById('errorNome');
+    const errorDataNascimento = document.getElementById('errorDataNascimento');
+    const errorMa = document.getElementById('errorMa');
+
+    const btnNext = document.getElementById('btnNext');
+    const btnBack = document.getElementById('btnBack');
+    const btnSubmit = document.getElementById('btnSubmit');
+
+    const inputAno = document.getElementById('anoMamografia');
+    const errorAno = document.getElementById('errorAno');
+    const checkboxNuncaFez = document.getElementById('nuncaFez');
+    const inputAnoPreventivo = document.getElementById('anoPreventivo');
+    const errorAnoPreventivo = document.getElementById('errorAnoPreventivo');
+    const checkboxNuncaFezPreventivo = document.getElementById('nuncaFezPreventivo');
+    const grupoFoto = document.getElementById('grupoFoto');
+
+    const fotoInput = document.getElementById('fotoInput');
+    const dropzone = document.getElementById('dropzone');
+    const dropzoneText = document.getElementById('dropzoneText');
+    const previewContainer = document.getElementById('previewContainer');
+    const previewImage = document.getElementById('previewImage');
+    const btnRemovePic = document.getElementById('btnRemovePic');
+    const btnReset = document.getElementById('btnReset');
+
+    // Elementos do Comprovante e Compartilhamento
+    const resumoNome = document.getElementById('resumoNome');
+    const resumoDataNascimento = document.getElementById('resumoDataNascimento');
+    const resumoMa = document.getElementById('resumoMa');
+    const resumoAno = document.getElementById('resumoAno');
+    const resumoPreventivo = document.getElementById('resumoPreventivo');
+    const resumoData = document.getElementById('resumoData');
+    const btnShareWhatsapp = document.getElementById('btnShareWhatsapp');
+    const btnDownloadCard = document.getElementById('btnDownloadCard');
+    const btnCopyText = document.getElementById('btnCopyText');
+    const copyToast = document.getElementById('copyToast');
+    const hiddenVoucherCanvas = document.getElementById('hiddenVoucherCanvas');
+
+    let fotoBase64 = null;
+    let fotoNome = null;
+    let fotoTipo = null;
+    let dadosComprovante = null;
+
+    // Normalização da Data de Nascimento (aceita XXYYZZZZ e formata como DD/MM/AAAA)
+    inputDataNascimento.addEventListener('input', (e) => {
+      let v = e.target.value.replace(/\D/g, '').slice(0, 8);
+      if (v.length > 4) {
+        v = v.replace(/^(\d{2})(\d{2})(\d{0,4})/, '$1/$2/$3');
+      } else if (v.length > 2) {
+        v = v.replace(/^(\d{2})(\d{0,2})/, '$1/$2');
+      }
+      e.target.value = v;
+      if (errorDataNascimento.style.display === 'block') {
+        errorDataNascimento.style.display = 'none';
+      }
+    });
+
+    // Limpeza de erro ao digitar o número da MA
+    inputMa.addEventListener('input', () => {
+      if (errorMa.style.display === 'block') {
+        errorMa.style.display = 'none';
+      }
+    });
+
+    // Função utilitária para validar e calcular idade a partir de DD/MM/AAAA
+    function validarDataNascimento(str) {
+      if (!/^\d{2}\/\d{2}\/\d{4}$/.test(str)) return { valida: false };
+      
+      const [d, m, y] = str.split('/').map(n => parseInt(n, 10));
+      const anoAtual = new Date().getFullYear();
+      
+      if (y < 1900 || y > anoAtual || m < 1 || m > 12 || d < 1 || d > 31) {
+        return { valida: false };
+      }
+
+      const dataObj = new Date(y, m - 1, d);
+      if (dataObj.getFullYear() !== y || dataObj.getMonth() !== (m - 1) || dataObj.getDate() !== d) {
+        return { valida: false };
+      }
+
+      const hoje = new Date();
+      let idade = hoje.getFullYear() - y;
+      const mesDiff = hoje.getMonth() - (m - 1);
+      if (mesDiff < 0 || (mesDiff === 0 && hoje.getDate() < d)) {
+        idade--;
+      }
+
+      if (idade < 0 || idade > 125) return { valida: false };
+
+      return { valida: true, idade: idade };
+    }
+
+    // Avançar da Etapa 1 para Etapa 2
+    btnNext.addEventListener('click', () => {
+      let valido = true;
+      const nomeVal = inputNome.value.trim();
+      const partesNome = nomeVal.split(/\s+/).filter(Boolean);
+      const dataNascVal = inputDataNascimento.value.trim();
+      const checagemData = validarDataNascimento(dataNascVal);
+      const maVal = inputMa.value.trim();
+
+      // Validação do Nome Completo
+      if (!nomeVal || partesNome.length < 2) {
+        errorNome.style.display = 'block';
+        valido = false;
+      } else {
+        errorNome.style.display = 'none';
+      }
+
+      // Validação da Data de Nascimento
+      if (!checagemData.valida) {
+        errorDataNascimento.style.display = 'block';
+        valido = false;
+      } else {
+        errorDataNascimento.style.display = 'none';
+      }
+
+      // Validação da MA (Número inteiro positivo ou zero)
+      if (maVal === '' || isNaN(parseInt(maVal, 10)) || parseInt(maVal, 10) < 0) {
+        errorMa.style.display = 'block';
+        valido = false;
+      } else {
+        errorMa.style.display = 'none';
+      }
+
+      if (!valido) return;
+
+      step1.classList.add('hidden');
+      step2.classList.remove('hidden');
+      if (!checkboxNuncaFez.checked) {
+        inputAno.focus();
+      }
+    });
+
+    inputMa.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        btnNext.click();
+      }
+    });
+
+    // Voltar da Etapa 2 para Etapa 1
+    btnBack.addEventListener('click', () => {
+      step2.classList.add('hidden');
+      step1.classList.remove('hidden');
+    });
+
+    // Checkbox "Nunca realizou preventivo"
+    checkboxNuncaFezPreventivo.addEventListener('change', (e) => {
+      if (e.target.checked) {
+        inputAnoPreventivo.value = '';
+        inputAnoPreventivo.disabled = true;
+        inputAnoPreventivo.style.backgroundColor = '#f3f4f6';
+        if (errorAnoPreventivo) errorAnoPreventivo.style.display = 'none';
+      } else {
+        inputAnoPreventivo.disabled = false;
+        inputAnoPreventivo.style.backgroundColor = '#fff9fc';
+      }
+    });
+
+    // Checkbox "Nunca realizou mamografia"
+    checkboxNuncaFez.addEventListener('change', (e) => {
+      if (e.target.checked) {
+        inputAno.value = '';
+        inputAno.disabled = true;
+        inputAno.style.backgroundColor = '#f3f4f6';
+        errorAno.style.display = 'none';
+        grupoFoto.style.display = 'none';
+        removerFoto();
+      } else {
+        inputAno.disabled = false;
+        inputAno.style.backgroundColor = '#fff9fc';
+        grupoFoto.style.display = 'block';
+      }
+    });
+
+    // Upload e Compressão de Foto
+    dropzone.addEventListener('click', () => fotoInput.click());
+
+    async function comprimirImagem(arquivo) {
+      if (!arquivo.type.startsWith('image/')) return null;
+      return new Promise((resolve) => {
+        const img = new Image();
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          img.src = e.target.result;
+          img.onload = () => {
+            const canvas = document.createElement('canvas');
+            const maxDim = 1280;
+            let width = img.width;
+            let height = img.height;
+
+            if (width > maxDim || height > maxDim) {
+              if (width > height) {
+                height = Math.round((height * maxDim) / width);
+                width = maxDim;
+              } else {
+                width = Math.round((width * maxDim) / height);
+                height = maxDim;
+              }
+            }
+
+            canvas.width = width;
+            canvas.height = height;
+            const ctx = canvas.getContext('2d');
+            ctx.drawImage(img, 0, 0, width, height);
+
+            const compressedBase64 = canvas.toDataURL('image/jpeg', 0.75);
+            resolve(compressedBase64);
+          };
+          img.onerror = () => resolve(e.target.result);
+        };
+        reader.readAsDataURL(arquivo);
+      });
+    }
+
+    fotoInput.addEventListener('change', async (e) => {
+      const file = e.target.files[0];
+      if (!file) return;
+
+      fotoNome = file.name;
+      fotoTipo = file.type;
+
+      if (file.type.startsWith('image/')) {
+        dropzoneText.textContent = 'Otimizando imagem...';
+        fotoBase64 = await comprimirImagem(file);
+        previewImage.src = fotoBase64;
+        previewContainer.style.display = 'block';
+        dropzone.style.display = 'none';
+      } else {
+        const reader = new FileReader();
+        reader.onload = (evt) => {
+          fotoBase64 = evt.target.result;
+          dropzoneText.textContent = 'Arquivo: ' + file.name;
+        };
+        reader.readAsDataURL(file);
+      }
+    });
+
+    function removerFoto() {
+      fotoBase64 = null;
+      fotoNome = null;
+      fotoTipo = null;
+      fotoInput.value = '';
+      previewImage.src = '';
+      previewContainer.style.display = 'none';
+      dropzone.style.display = 'flex';
+      dropzoneText.textContent = 'Tirar foto ou anexar laudo';
+    }
+
+    btnRemovePic.addEventListener('click', removerFoto);
+
+    // Submissão do Formulário
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      let valido = true;
+      const anoAtual = new Date().getFullYear();
+      const checagemData = validarDataNascimento(inputDataNascimento.value.trim());
+
+      if (!checagemData.valida) {
+        valido = false;
+      }
+
+      if (!checkboxNuncaFez.checked) {
+        const anoVal = parseInt(inputAno.value, 10);
+        if (isNaN(anoVal) || anoVal < 1970 || anoVal > anoAtual) {
+          errorAno.style.display = 'block';
+          valido = false;
+        } else {
+          errorAno.style.display = 'none';
+        }
+      }
+
+      if (!checkboxNuncaFezPreventivo.checked && inputAnoPreventivo.value.trim()) {
+        const anoPrevVal = parseInt(inputAnoPreventivo.value, 10);
+        if (isNaN(anoPrevVal) || anoPrevVal < 1970 || anoPrevVal > anoAtual) {
+          if (errorAnoPreventivo) errorAnoPreventivo.style.display = 'block';
+          valido = false;
+        } else {
+          if (errorAnoPreventivo) errorAnoPreventivo.style.display = 'none';
+        }
+      }
+
+      if (!valido) return;
+
+      const agora = new Date();
+      const dataFormatada = agora.toLocaleDateString('pt-BR') + ' às ' + agora.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' });
+
+      let textoPreventivo = 'Não informado';
+      if (checkboxNuncaFezPreventivo.checked) {
+        textoPreventivo = 'Nunca realizou';
+      } else if (inputAnoPreventivo.value.trim()) {
+        textoPreventivo = inputAnoPreventivo.value.trim();
+      }
+
+      const maInt = parseInt(inputMa.value.trim(), 10);
+
+      dadosComprovante = {
+        nome: inputNome.value.trim(),
+        dataNascimento: inputDataNascimento.value.trim(),
+        idade: checagemData.idade,
+        ma: maInt,
+        ano: checkboxNuncaFez.checked ? 'Nunca realizou' : inputAno.value.trim(),
+        preventivo: textoPreventivo,
+        dataHoraFormatada: dataFormatada
+      };
+
+      const payload = {
+        dataHora: agora.toISOString(),
+        nomeCompleto: dadosComprovante.nome,
+        dataNascimento: dadosComprovante.dataNascimento,
+        idade: dadosComprovante.idade,
+        ma: dadosComprovante.ma,
+        acs: 'MA ' + dadosComprovante.ma, // retrocompatível com a planilha
+        nuncaFez: checkboxNuncaFez.checked,
+        anoUltimaMamografia: dadosComprovante.ano,
+        ultimoPreventivo: dadosComprovante.preventivo,
+        arquivo: fotoBase64 ? {
+          nome: fotoNome || 'laudo.jpg',
+          tipo: fotoTipo || 'image/jpeg',
+          base64: fotoBase64.includes(',') ? fotoBase64.split(',')[1] : fotoBase64
+        } : null
+      };
+
+      btnSubmit.disabled = true;
+      btnBack.disabled = true;
+      btnSubmit.innerHTML = '<div class="spinner"></div>';
+
+      try {
+        const hasCustomUrl = APPS_SCRIPT_URL && !APPS_SCRIPT_URL.includes('SUA_URL_DO_APPS_SCRIPT_AQUI');
+
+        if (hasCustomUrl) {
+          const controller = new AbortController();
+          const timeoutId = setTimeout(() => controller.abort(), 9000);
+
+          try {
+            await fetch(APPS_SCRIPT_URL, {
+              method: 'POST',
+              mode: 'no-cors',
+              headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+              body: JSON.stringify(payload),
+              signal: controller.signal
+            });
+            clearTimeout(timeoutId);
+          } catch (netErr) {
+            console.warn('Envio em segundo plano:', netErr);
+          }
+        } else {
+          await new Promise(r => setTimeout(r, 600));
+        }
+      } catch (err) {
+        console.error('Aviso ao submeter dados:', err);
+      } finally {
+        if (resumoNome) resumoNome.textContent = dadosComprovante.nome;
+        if (resumoDataNascimento) resumoDataNascimento.textContent = dadosComprovante.dataNascimento + ' (' + dadosComprovante.idade + ' anos)';
+        if (resumoMa) resumoMa.textContent = 'MA ' + dadosComprovante.ma;
+        if (resumoAno) resumoAno.textContent = dadosComprovante.ano;
+        if (resumoPreventivo) resumoPreventivo.textContent = dadosComprovante.preventivo;
+        if (resumoData) resumoData.textContent = dadosComprovante.dataHoraFormatada;
+
+        form.classList.add('hidden');
+        successScreen.style.display = 'block';
+
+        btnSubmit.disabled = false;
+        btnBack.disabled = false;
+        btnSubmit.innerHTML = 'ENVIAR';
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    });
+
+    // Mensagem Formatada para WhatsApp e Cópia
+    function montarTextoComprovante() {
+      if (!dadosComprovante) return '';
+      return (
+        '🌸 *COMPROVANTE - MAMOGRAFIA OUTUBRO ROSA*\n' +
+        '📍 *VERA CRUZ - USF JIRIBATUBA*\n\n' +
+        'Olá, *' + dadosComprovante.nome + '*! Seu cadastro foi registrado com sucesso.\n\n' +
+        '📋 *Dados do Registro:*\n' +
+        '• Data de Nasc.: ' + dadosComprovante.dataNascimento + ' (' + dadosComprovante.idade + ' anos)\n' +
+        '• Microárea: MA ' + dadosComprovante.ma + '\n' +
+        '• Última Mamografia: ' + dadosComprovante.ano + '\n' +
+        '• Último Preventivo: ' + dadosComprovante.preventivo + '\n' +
+        '• Data/Hora: ' + dadosComprovante.dataHoraFormatada + '\n\n' +
+        '📌 *LOCAL E PRAZO DE RETIRADA:*\n' +
+        'Os documentos para realização da Mamografia estarão disponíveis para retirada na *Unidade de Saúde da Família de Jiribatuba* em *três (3) dias úteis*.\n\n' +
+        'Cuidar da sua saúde é um ato de amor! 💗'
+      );
+    }
+
+    // 1. WhatsApp
+    btnShareWhatsapp.addEventListener('click', () => {
+      const texto = montarTextoComprovante();
+      const zapUrl = 'https://api.whatsapp.com/send?text=' + encodeURIComponent(texto);
+      window.open(zapUrl, '_blank');
+    });
+
+    // 2. Copiar Texto
+    btnCopyText.addEventListener('click', async () => {
+      const texto = montarTextoComprovante();
+      let copiado = false;
+
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        try {
+          await navigator.clipboard.writeText(texto);
+          copiado = true;
+        } catch (e) {
+          copiado = false;
+        }
+      }
+
+      if (!copiado) {
+        const tempArea = document.createElement('textarea');
+        tempArea.value = texto;
+        tempArea.style.position = 'fixed';
+        tempArea.style.left = '-9999px';
+        document.body.appendChild(tempArea);
+        tempArea.select();
+        try {
+          document.execCommand('copy');
+          copiado = true;
+        } catch (err) {
+          console.error('Falha ao copiar:', err);
+        } finally {
+          document.body.removeChild(tempArea);
+        }
+      }
+
+      if (copiado) {
+        copyToast.style.display = 'block';
+        setTimeout(() => {
+          copyToast.style.display = 'none';
+        }, 3000);
+      }
+    });
+
+    // 3. Gerador do Cartão em Imagem PNG nativa via Canvas
+    btnDownloadCard.addEventListener('click', () => {
+      if (!dadosComprovante) return;
+
+      const canvas = hiddenVoucherCanvas;
+      const ctx = canvas.getContext('2d');
+
+      const width = 800;
+      const height = 1040;
+      canvas.width = width;
+      canvas.height = height;
+
+      // Fundo Rosa Suave
+      ctx.fillStyle = '#fff5f8';
+      ctx.fillRect(0, 0, width, height);
+
+      // Cartão Central Branco
+      ctx.fillStyle = '#ffffff';
+      roundRect(ctx, 35, 35, width - 70, height - 70, 28);
+      ctx.fill();
+
+      // Borda do Cartão
+      ctx.lineWidth = 4;
+      ctx.strokeStyle = '#fbcfe8';
+      ctx.stroke();
+
+      // Cabeçalho Rosa Escuro
+      ctx.fillStyle = '#be185d';
+      roundRectTop(ctx, 35, 35, width - 70, 160, 28);
+      ctx.fill();
+
+      // Textos do Cabeçalho
+      ctx.fillStyle = '#ffffff';
+      ctx.textAlign = 'center';
+      ctx.font = '800 24px sans-serif';
+      ctx.fillText('VERA CRUZ - USF JIRIBATUBA', width / 2, 90);
+
+      ctx.font = '900 36px sans-serif';
+      ctx.fillText('MAMOGRAFIA • OUTUBRO ROSA', width / 2, 142);
+
+      // Selo Oficial
+      ctx.fillStyle = '#fce4ec';
+      roundRect(ctx, (width / 2) - 170, 222, 340, 44, 22);
+      ctx.fill();
+
+      ctx.fillStyle = '#9d174d';
+      ctx.font = '800 20px sans-serif';
+      ctx.fillText('COMPROVANTE DE CADASTRO', width / 2, 251);
+
+      // Linhas com Dados do Paciente
+      const drawInfoLine = (label, val, y) => {
+        ctx.textAlign = 'left';
+        ctx.fillStyle = '#6b7280';
+        ctx.font = '700 23px sans-serif';
+        ctx.fillText(label, 75, y);
+
+        ctx.textAlign = 'right';
+        ctx.fillStyle = '#111827';
+        ctx.font = '800 23px sans-serif';
+
+        let displayVal = String(val);
+        while (ctx.measureText(displayVal).width > 420 && displayVal.length > 5) {
+          displayVal = displayVal.slice(0, -2) + '...';
+        }
+        ctx.fillText(displayVal, width - 75, y);
+
+        ctx.strokeStyle = '#f3f4f6';
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        ctx.moveTo(75, y + 15);
+        ctx.lineTo(width - 75, y + 15);
+        ctx.stroke();
+      };
+
+      drawInfoLine('Paciente:', dadosComprovante.nome, 320);
+      drawInfoLine('Data de Nasc.:', dadosComprovante.dataNascimento + ' (' + dadosComprovante.idade + ' anos)', 380);
+      drawInfoLine('Microárea:', 'MA ' + dadosComprovante.ma, 440);
+      drawInfoLine('Última Mamografia:', dadosComprovante.ano, 500);
+      drawInfoLine('Último Preventivo:', dadosComprovante.preventivo, 560);
+      drawInfoLine('Data do Registro:', dadosComprovante.dataHoraFormatada, 620);
+
+      // Caixa Verde de Prazo de Retirada
+      ctx.fillStyle = '#ecfdf5';
+      roundRect(ctx, 75, 680, width - 150, 180, 20);
+      ctx.fill();
+      ctx.strokeStyle = '#a7f3d0';
+      ctx.lineWidth = 2;
+      ctx.stroke();
+
+      ctx.textAlign = 'center';
+      ctx.fillStyle = '#065f46';
+      ctx.font = '900 24px sans-serif';
+      ctx.fillText('LOCAL E PRAZO DE RETIRADA', width / 2, 725);
+
+      ctx.font = '700 21px sans-serif';
+      ctx.fillText('Os documentos estarão disponíveis na', width / 2, 770);
+      ctx.font = '800 23px sans-serif';
+      ctx.fillText('Unidade de Saúde em 3 dias úteis', width / 2, 805);
+
+      // Rodapé
+      ctx.fillStyle = '#9ca3af';
+      ctx.font = '600 18px sans-serif';
+      ctx.fillText('Prefeitura de Vera Cruz • Cuidar de você é nossa prioridade', width / 2, 920);
+
+      // Download Automático do PNG
+      const sanitizedName = dadosComprovante.nome.toLowerCase().replace(/[^a-z0-9]/g, '_').slice(0, 20);
+      const downloadLink = document.createElement('a');
+      downloadLink.download = 'comprovante_mamografia_' + sanitizedName + '.png';
+      downloadLink.href = canvas.toDataURL('image/png');
+      downloadLink.click();
+    });
+
+    function roundRect(ctx, x, y, width, height, radius) {
+      ctx.beginPath();
+      ctx.moveTo(x + radius, y);
+      ctx.lineTo(x + width - radius, y);
+      ctx.quadraticCurveTo(x + width, y + width, x + width, y + radius);
+      ctx.lineTo(x + width, y + height - radius);
+      ctx.quadraticCurveTo(x + width, y + height, x + width - radius, y + height);
+      ctx.lineTo(x + radius, y + height);
+      ctx.quadraticCurveTo(x, y + height, x, y + height - radius);
+      ctx.lineTo(x, y + radius);
+      ctx.quadraticCurveTo(x, y, x + radius, y);
+      ctx.closePath();
+    }
+
+    function roundRectTop(ctx, x, y, width, height, radius) {
+      ctx.beginPath();
+      ctx.moveTo(x + radius, y);
+      ctx.lineTo(x + width - radius, y);
+      ctx.quadraticCurveTo(x + width, y + width, x + width, y + radius);
+      ctx.lineTo(x + width, y + height);
+      ctx.lineTo(x, y + height);
+      ctx.lineTo(x, y + radius);
+      ctx.quadraticCurveTo(x, y, x + radius, y);
+      ctx.closePath();
+    }
+
+    // Reset para Novo Atendimento
+    btnReset.addEventListener('click', () => {
+      form.reset();
+      removerFoto();
+      dadosComprovante = null;
+      checkboxNuncaFez.checked = false;
+      inputAno.disabled = false;
+      inputAno.style.backgroundColor = '#fff9fc';
+      checkboxNuncaFezPreventivo.checked = false;
+      inputAnoPreventivo.disabled = false;
+      inputAnoPreventivo.style.backgroundColor = '#fff9fc';
+      if (errorAnoPreventivo) errorAnoPreventivo.style.display = 'none';
+      grupoFoto.style.display = 'block';
+      successScreen.style.display = 'none';
+      form.classList.remove('hidden');
+      step2.classList.add('hidden');
+      step1.classList.remove('hidden');
+      inputNome.focus();
+      btnSubmit.disabled = false;
+      btnBack.disabled = false;
+      btnSubmit.innerHTML = 'ENVIAR';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  </script>
+</body>
+</html>
+```
